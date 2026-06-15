@@ -137,3 +137,9 @@ $ next dev --hostname 0.0.0.0 --port 3000
  GET /api/admin/me 200 in 17ms
  GET /api/admin/contacts 200 in 199ms
  GET /api/admin/stats 200 in 594ms
+ GET /api/courses?featured=1 200 in 225ms
+ GET /api/admin/me 200 in 66ms
+ GET /api/admin/contacts 200 in 248ms
+ GET /api/admin/stats 200 in 514ms
+ GET /api/courses?featured=1 200 in 200ms
+ GET /api/courses?featured=1 200 in 227ms
