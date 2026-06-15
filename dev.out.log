@@ -1,0 +1,139 @@
+yarn run v1.22.22
+$ next dev --hostname 0.0.0.0 --port 3000
+  ▲ Next.js 14.2.3
+  - Local:        http://localhost:3000
+  - Network:      http://0.0.0.0:3000
+  - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 2.1s
+ ○ Compiling /admin/login ...
+ ✓ Compiled /admin/login in 3.6s (633 modules)
+ GET /admin/login 200 in 3764ms
+ ✓ Compiled in 250ms (323 modules)
+ ✓ Compiled /api/[[...path]] in 275ms (72 modules)
+ POST /api/admin/login 200 in 1835ms
+ GET /api/admin/me 200 in 18ms
+ GET /api/admin/stats 500 in 24ms
+ ✓ Compiled /admin in 507ms (702 modules)
+ GET /admin 200 in 1675ms
+ GET /api/courses 200 in 1597ms
+ ✓ Compiled in 321ms
+ ✓ Compiled in 618ms (344 modules)
+ ✓ Compiled /admin/login in 80ms (310 modules)
+ GET /admin/login 200 in 241ms
+ ✓ Compiled /api/[[...path]] in 96ms (359 modules)
+ POST /api/admin/login 200 in 1483ms
+ GET /api/admin/stats 200 in 1860ms
+ GET /admin/login 200 in 248ms
+ ○ Compiling / ...
+ ✓ Compiled / in 1360ms (703 modules)
+ GET /admin/login? 200 in 88ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 740ms (668 modules)
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 1013ms
+ ✓ Compiled in 244ms (357 modules)
+ GET /admin/login? 200 in 100ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 33ms
+ ✓ Compiled /api/[[...path]] in 157ms (359 modules)
+ GET /api/admin/me 401 in 1555ms
+ GET /api/admin/courses 401 in 1254ms
+ GET /api/courses 200 in 1729ms
+ GET /api/admin/me 401 in 16ms
+ GET /api/admin/courses 401 in 182ms
+ POST /api/admin/login 200 in 9ms
+ GET /api/admin/me 200 in 9ms
+ GET /api/admin/courses 200 in 307ms
+ ✓ Compiled / in 148ms (348 modules)
+ GET / 200 in 355ms
+ GET / 200 in 227ms
+ GET /admin/login 200 in 56ms
+ ✓ Compiled /api/[[...path]] in 188ms (397 modules)
+ GET /api/courses 200 in 1534ms
+ ✓ Compiled /cursos in 459ms (764 modules)
+ GET /api/courses?featured=1 200 in 1574ms
+ GET /api/courses 200 in 1486ms
+ POST /api/admin/login 200 in 25ms
+ GET /api/admin/me 200 in 9ms
+ ✓ Compiled /admin in 192ms (403 modules)
+ GET /api/admin/me 200 in 19ms
+ GET /api/admin/contacts 200 in 1416ms
+ GET /api/admin/stats 200 in 1697ms
+ GET /api/admin/me 200 in 27ms
+ GET /api/admin/stats 200 in 528ms
+ GET /api/admin/contacts 200 in 814ms
+ GET /api/admin/me 200 in 21ms
+ GET /api/admin/contacts 200 in 289ms
+ GET /api/admin/stats 200 in 578ms
+ ○ Compiling /admin/cursos ...
+ ✓ Compiled /admin/cursos in 1346ms (924 modules)
+ GET /api/admin/me 200 in 86ms
+ ✓ Compiled in 195ms (451 modules)
+ GET /api/admin/courses 200 in 1752ms
+ ✓ Compiled /admin/contactos in 337ms (935 modules)
+ GET /api/admin/me 200 in 57ms
+ GET /api/admin/contacts 200 in 1730ms
+ GET /api/admin/courses 200 in 1615ms
+ GET /api/admin/me 200 in 25ms
+ GET /api/admin/courses 200 in 211ms
+ GET /api/admin/contacts 200 in 808ms
+ GET /api/admin/stats 200 in 638ms
+ GET /api/admin/me 200 in 27ms
+ GET /api/admin/contacts 200 in 222ms
+ GET /api/admin/stats 200 in 496ms
+ GET /api/admin/me 200 in 18ms
+ GET /api/admin/contacts 200 in 368ms
+ GET /api/admin/stats 200 in 652ms
+ POST /api/admin/login 200 in 34ms
+ GET /api/admin/me 200 in 15ms
+ GET /api/admin/me 200 in 23ms
+ GET /api/admin/contacts 200 in 525ms
+ GET /api/admin/stats 200 in 959ms
+ GET /api/admin/me 200 in 26ms
+ GET /api/admin/contacts 200 in 247ms
+ GET /api/admin/stats 200 in 523ms
+ GET /api/admin/me 200 in 12ms
+ GET /api/admin/courses 200 in 224ms
+ GET /api/admin/me 200 in 29ms
+ GET /api/admin/contacts 200 in 255ms
+ GET /api/admin/courses 200 in 269ms
+ GET /api/admin/me 200 in 33ms
+ GET /api/admin/contacts 200 in 237ms
+ GET /api/admin/courses 200 in 292ms
+ GET /api/admin/me 200 in 37ms
+ GET /api/admin/contacts 200 in 330ms
+ GET /api/admin/stats 200 in 637ms
+ GET /api/admin/me 200 in 32ms
+ GET /api/admin/courses 200 in 274ms
+ GET /api/admin/contacts 200 in 221ms
+ GET /api/admin/stats 200 in 516ms
+ GET /admin/login? 200 in 204ms
+ GET /admin/login 200 in 49ms
+ GET /api/courses 200 in 302ms
+ ✓ Compiled / in 251ms (409 modules)
+ GET / 200 in 567ms
+ GET /api/courses?featured=1 200 in 1450ms
+ ✓ Compiled /cursos in 298ms (416 modules)
+ GET /api/courses 200 in 1514ms
+ ○ Compiling /contacto ...
+ ✓ Compiled /contacto in 957ms (882 modules)
+ GET /api/admin/me 200 in 56ms
+ GET /api/admin/contacts 200 in 1403ms
+ GET /api/admin/stats 200 in 2002ms
+ GET / 200 in 219ms
+ GET /api/courses?featured=1 200 in 264ms
+ GET /api/courses 200 in 205ms
+ GET /api/courses 200 in 298ms
+ GET /api/courses 200 in 266ms
+ GET /api/courses 200 in 210ms
+ GET /api/courses?featured=1 200 in 256ms
+ GET /api/courses?featured=1 200 in 269ms
+ GET /api/admin/me 200 in 36ms
+ GET /api/admin/stats 200 in 568ms
+ GET /api/admin/contacts 200 in 947ms
+ GET /api/admin/me 200 in 27ms
+ GET /api/admin/contacts 200 in 210ms
+ GET /api/admin/stats 200 in 585ms
+ GET /api/admin/me 200 in 17ms
+ GET /api/admin/contacts 200 in 199ms
+ GET /api/admin/stats 200 in 594ms

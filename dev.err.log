@@ -1,0 +1,21 @@
+API Error: Error: Error conectando a MongoDB: querySrv ECONNREFUSED _mongodb._tcp.ebia.bvofqyv.mongodb.net
+    at connectToMongo (webpack-internal:///(rsc)/./app/api/[[...path]]/route.js:60:15)
+    at async handleRoute (webpack-internal:///(rsc)/./app/api/[[...path]]/route.js:611:20)
+    at async C:\Users\cgcon\OneDrive\Escritorio\EBIA\EBIA\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:53446
+    at async e_.execute (C:\Users\cgcon\OneDrive\Escritorio\EBIA\EBIA\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:44747)
+    at async e_.handle (C:\Users\cgcon\OneDrive\Escritorio\EBIA\EBIA\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:54700)
+    at async doRender (C:\Users\cgcon\OneDrive\Escritorio\EBIA\EBIA\node_modules\next\dist\server\base-server.js:1377:42)
+    at async cacheEntry.responseCache.get.routeKind (C:\Users\cgcon\OneDrive\Escritorio\EBIA\EBIA\node_modules\next\dist\server\base-server.js:1587:40)
+    at async DevServer.renderToResponseWithComponentsImpl (C:\Users\cgcon\OneDrive\Escritorio\EBIA\EBIA\node_modules\next\dist\server\base-server.js:1507:28)
+    at async DevServer.renderPageComponent (C:\Users\cgcon\OneDrive\Escritorio\EBIA\EBIA\node_modules\next\dist\server\base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (C:\Users\cgcon\OneDrive\Escritorio\EBIA\EBIA\node_modules\next\dist\server\base-server.js:1962:32)
+    at async DevServer.pipeImpl (C:\Users\cgcon\OneDrive\Escritorio\EBIA\EBIA\node_modules\next\dist\server\base-server.js:920:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\Users\cgcon\OneDrive\Escritorio\EBIA\EBIA\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\Users\cgcon\OneDrive\Escritorio\EBIA\EBIA\node_modules\next\dist\server\base-server.js:816:17)
+    at async C:\Users\cgcon\OneDrive\Escritorio\EBIA\EBIA\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\cgcon\OneDrive\Escritorio\EBIA\EBIA\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\cgcon\OneDrive\Escritorio\EBIA\EBIA\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\cgcon\OneDrive\Escritorio\EBIA\EBIA\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\Users\cgcon\OneDrive\Escritorio\EBIA\EBIA\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\Users\cgcon\OneDrive\Escritorio\EBIA\EBIA\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\Users\cgcon\OneDrive\Escritorio\EBIA\EBIA\node_modules\next\dist\server\lib\start-server.js:141:13)

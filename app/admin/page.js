@@ -10,9 +10,10 @@ import { Toaster } from '@/components/ui/sonner';
 const fetcher = (url) => fetch(url).then(r => r.ok ? r.json() : Promise.reject(r));
 
 function Dashboard() {
-  const { data: stats } = useSWR('/api/admin/stats', fetcher);
-  const { data: contacts } = useSWR('/api/admin/contacts', fetcher);
+  const { data: stats, error: statsError } = useSWR('/api/admin/stats', fetcher);
+  const { data: contacts, error: contactsError } = useSWR('/api/admin/contacts', fetcher);
   const recent = (contacts || []).slice(0, 5);
+  const mongoUnavailable = Boolean(statsError || contactsError);
 
   const cards = [
     { label: 'Cursos totales', value: stats?.courses ?? '—', icon: BookOpen, color: 'from-indigo-500 to-violet-500' },
@@ -27,6 +28,11 @@ function Dashboard() {
       <div className="max-w-6xl">
         <h1 className="text-3xl font-extrabold mb-2">Hola de nuevo 👋</h1>
         <p className="text-muted-foreground mb-8">Aquí tienes un resumen rápido de tu plataforma EBIA.</p>
+        {mongoUnavailable && (
+          <div className="mb-6 rounded-xl border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-900">
+            Entraste correctamente al administrador, pero MongoDB Atlas no está disponible desde esta red. Revisa que el clúster esté activo y que la IP esté autorizada en Network Access.
+          </div>
+        )}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
           {cards.map(c => {
             const Icon = c.icon;
