@@ -143,3 +143,10 @@ $ next dev --hostname 0.0.0.0 --port 3000
  GET /api/admin/stats 200 in 514ms
  GET /api/courses?featured=1 200 in 200ms
  GET /api/courses?featured=1 200 in 227ms
+ GET /api/courses?featured=1 200 in 212ms
+ GET /api/courses?featured=1 200 in 207ms
+   Reload env: .env.local
+ ✓ Compiled in 464ms (826 modules)
+ ✓ Compiled in 89ms (462 modules)
+ ✓ Compiled /admin in 122ms (375 modules)
+ ✓ Compiled in 220ms (837 modules)
