@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { ArrowRight, MessageCircle } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { getCategoryLabel, getLevelLabel, whatsappLink } from '@/lib/ebia/constants';
+import { getCategoryLabel, getLevelLabel } from '@/lib/ebia/constants';
 
 export default function CourseCard({ course }) {
   return (
@@ -39,9 +39,9 @@ export default function CourseCard({ course }) {
             <Link href={`/cursos/${course.slug}`}>Información <ArrowRight className="h-3.5 w-3.5 ml-1" /></Link>
           </Button>
           <Button asChild size="sm" className="flex-1 bg-[#25D366] hover:bg-[#1ebe5b] text-white">
-            <a href={course.whatsapp_url || whatsappLink(`Hola EBIA, me interesa el curso "${course.title}".`)} target="_blank" rel="noreferrer">
+            <Link href="/landings/gracias">
               <MessageCircle className="h-3.5 w-3.5 mr-1" fill="currentColor" /> Inscribirme
-            </a>
+            </Link>
           </Button>
         </div>
       </div>
