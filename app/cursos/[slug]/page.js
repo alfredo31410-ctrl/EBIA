@@ -75,8 +75,8 @@ function CursoDetail({ params }) {
                 )}
                 <div className="flex gap-2 flex-wrap">
                   <Button asChild size="lg" className="h-12 px-6 bg-[#25D366] hover:bg-[#1ebe5b] text-white">
-                    <a href="/landings/gracias">
-                      <MessageCircle className="h-4 w-4 mr-2" fill="currentColor" /> Continuar registro
+                    <a href="/acceso-gratis">
+                      <MessageCircle className="h-4 w-4 mr-2" fill="currentColor" /> Inscribirme
                     </a>
                   </Button>
                   <Button asChild size="lg" variant="outline" className="h-12 px-6">

@@ -39,8 +39,8 @@ export default function CourseCard({ course }) {
             <Link href={`/cursos/${course.slug}`}>Información <ArrowRight className="h-3.5 w-3.5 ml-1" /></Link>
           </Button>
           <Button asChild size="sm" className="flex-1 bg-[#25D366] hover:bg-[#1ebe5b] text-white">
-            <a href="/landings/gracias">
-              <MessageCircle className="h-3.5 w-3.5 mr-1" fill="currentColor" /> Continuar
+            <a href="/acceso-gratis">
+              <MessageCircle className="h-3.5 w-3.5 mr-1" fill="currentColor" /> Inscribirme
             </a>
           </Button>
         </div>
