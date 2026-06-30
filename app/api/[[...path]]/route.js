@@ -631,6 +631,16 @@ async function handleRoute(request, { params }) {
       return handleCORS(NextResponse.json({ message: 'EBIA API ok' }))
     }
 
+    if (route === '/health' && method === 'GET') {
+      return handleCORS(
+        NextResponse.json({
+          ok: true,
+          service: 'ebia-api',
+          timestamp: new Date().toISOString(),
+        })
+      )
+    }
+
     const authResponse = await handleAuthRoute(request, route, method)
 
     if (authResponse) {
