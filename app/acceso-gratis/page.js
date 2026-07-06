@@ -1,18 +1,27 @@
 import Link from 'next/link';
-import { ArrowRight, BrainCircuit, CalendarDays, Clock3, MapPin, Sparkles } from 'lucide-react';
+import Script from 'next/script';
+import { ArrowRight, CalendarDays, Clock3, MapPin, Sparkles } from 'lucide-react';
 import styles from './page.module.css';
 
-const highlights = ['Prompts practicos', 'Reportes con IA', 'Automatizacion simple'];
+const highlights = ['Prompts utiles', 'IA practica', 'Sin tecnicismos'];
 
 export const metadata = {
-  title: 'Acceso gratis | EBIA',
+  title: 'Clase gratis de IA desde cero | EBIA',
   description:
-    'Landing intermedia de EBIA para registrar el acceso gratuito antes de entrar a la pagina de gracias.',
+    'Clase gratis de EBIA para aprender Inteligencia Artificial desde cero. 15 de julio, de 12 a 1 PM hora CDMX.',
 };
 
 export default function AccesoGratisPage() {
   return (
     <main className={styles.page}>
+      <input className={styles.formToggle} id="registro-toggle" type="checkbox" />
+
+      <aside className={styles.stickyEventBar} aria-label="Datos principales de la clase">
+        <span>Fecha <strong>15 de julio</strong></span>
+        <span>Horario <strong>12 a 1 PM</strong></span>
+        <span>Hora local <strong>CDMX</strong></span>
+      </aside>
+
       <div className={styles.scan} />
       <div className={styles.glowOne} />
       <div className={styles.glowTwo} />
@@ -23,7 +32,7 @@ export default function AccesoGratisPage() {
             <span>e</span>
             <strong>EBIA</strong>
           </Link>
-          <p>Estudios digitales, innovacion y negocios</p>
+          <p>Clase gratis &middot; 15 de julio</p>
         </header>
 
         <div className={styles.content}>
@@ -34,20 +43,19 @@ export default function AccesoGratisPage() {
             </div>
 
             <h1>
-              ABC de <span>Inteligencia Artificial</span> para empezar desde cero
+              ABC de <span>Inteligencia Artificial</span> desde cero
             </h1>
 
             <p className={styles.description}>
-              Aprende a usar herramientas de inteligencia artificial para crear
-              ideas, organizar informacion, trabajar mas rapido y ganar confianza
-              con tecnologia.
+              Aprende a usar IA para trabajar mas rapido, ordenar ideas, crear
+              mejores prompts y aplicar herramientas digitales sin tecnicismos.
             </p>
 
             <div className={styles.actions}>
-              <Link href="/landings/gracias" className={styles.primaryButton}>
+              <label htmlFor="registro-toggle" className={styles.primaryButton} role="button" tabIndex={0}>
                 Quiero mi acceso gratis
                 <ArrowRight />
-              </Link>
+              </label>
               <a href="#aprendizaje" className={styles.secondaryButton}>
                 Ver que aprendere
               </a>
@@ -59,17 +67,17 @@ export default function AccesoGratisPage() {
               <div>
                 <CalendarDays />
                 <small>Fecha</small>
-                <strong>Proximamente</strong>
+                <strong>15 de julio</strong>
               </div>
               <div>
                 <Clock3 />
                 <small>Horario</small>
-                <strong>11:00 AM</strong>
+                <strong>12 a 1 PM</strong>
               </div>
               <div>
                 <MapPin />
-                <small>Modalidad</small>
-                <strong>Online</strong>
+                <small>Hora local</small>
+                <strong>CDMX</strong>
               </div>
             </div>
 
@@ -80,8 +88,13 @@ export default function AccesoGratisPage() {
             </div>
           </div>
 
-          <div className={styles.visual} aria-label="Panel de flujo inteligente">
-            <div className={styles.aiPanel}>
+          <div className={styles.visual} aria-label="Instructora de EBIA para la clase gratis">
+            <img
+              src="/landings/ia-desde-cero/instructora-ebia.jpeg"
+              alt="Instructora de EBIA para la clase gratis de inteligencia artificial"
+            />
+
+            <div className={styles.aiPanel} id="aprendizaje">
               <div className={styles.panelHeader}>
                 <span>AI Learning Console</span>
                 <strong>LIVE</strong>
@@ -91,38 +104,53 @@ export default function AccesoGratisPage() {
                 <span>01</span>
                 <div>
                   <strong>Analiza</strong>
-                  <p>Resume ideas, documentos y dudas en segundos.</p>
+                  <p>Convierte ideas sueltas en respuestas claras.</p>
                 </div>
               </div>
               <div className={styles.flowItem}>
                 <span>02</span>
                 <div>
-                  <strong>Detecta</strong>
-                  <p>Encuentra oportunidades para ahorrar tiempo.</p>
+                  <strong>Crea</strong>
+                  <p>Aprende prompts para trabajo, estudio y negocio.</p>
                 </div>
               </div>
               <div className={styles.flowItem}>
                 <span>03</span>
                 <div>
-                  <strong>Entrega</strong>
-                  <p>Genera respuestas claras para trabajo y estudio.</p>
+                  <strong>Aplica</strong>
+                  <p>Usa IA en tareas reales desde el primer dia.</p>
                 </div>
               </div>
 
-              <div className={styles.terminal} id="aprendizaje">
-                <p>&gt; Crea prompts utiles</p>
-                <p>&gt; Ordena informacion</p>
-                <p>&gt; Automatiza tareas simples</p>
-                <p>&gt; Aprende sin tecnicismos</p>
+              <div className={styles.terminal}>
+                <p>&gt; Escribe mejores prompts</p>
+                <p>&gt; Ahorra tiempo con IA</p>
+                <p>&gt; Aprende paso a paso</p>
               </div>
-            </div>
-
-            <div className={styles.faceCard}>
-              <BrainCircuit />
             </div>
           </div>
         </div>
       </section>
+
+      <section className={styles.formModal} aria-label="Formulario de registro">
+        <label className={styles.formBackdrop} htmlFor="registro-toggle" aria-label="Cerrar formulario" />
+        <div className={styles.formCard} role="dialog" aria-modal="true" aria-labelledby="form-title">
+          <label className={styles.closeButton} htmlFor="registro-toggle" aria-label="Cerrar formulario">
+            &times;
+          </label>
+          <p className={styles.formKicker}>Reserva tu lugar</p>
+          <h2 id="form-title">Completa tu registro gratis</h2>
+          <p className={styles.formCopy}>
+            Deja tus datos para recibir la informacion de acceso a la clase del
+            15 de julio, de 12 a 1 PM hora CDMX.
+          </p>
+          <div className={styles.activeFormWrap}>
+            <div className="_form_273" />
+          </div>
+        </div>
+      </section>
+
+      <Script src="https://cefincapacitacion.activehosted.com/f/embed.php?id=273" strategy="afterInteractive" />
     </main>
   );
 }

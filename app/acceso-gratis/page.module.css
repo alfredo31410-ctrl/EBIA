@@ -50,15 +50,53 @@
   background: rgba(245, 165, 36, 0.24);
 }
 
+.stickyEventBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 90;
+  display: flex;
+  width: 100%;
+  min-height: 62px;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(12px, 4vw, 46px);
+  border-bottom: 1px solid rgba(103, 232, 249, 0.26);
+  background: rgba(6, 17, 31, 0.94);
+  padding: 10px 18px;
+  color: #a5f3fc;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-align: center;
+  text-transform: uppercase;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(16px);
+}
+
+.stickyEventBar span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.stickyEventBar strong {
+  color: #ffffff;
+  font-size: clamp(16px, 2.2vw, 26px);
+  letter-spacing: 0;
+  text-transform: none;
+}
+
 .hero {
   position: relative;
   z-index: 1;
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  max-width: 1240px;
+  max-width: 1360px;
   margin: 0 auto;
-  padding: 34px 22px 54px;
+  padding: 94px 22px 54px;
 }
 
 .header {
@@ -107,8 +145,8 @@
 .content {
   display: grid;
   flex: 1;
-  grid-template-columns: minmax(0, 0.94fr) minmax(360px, 0.78fr);
-  gap: clamp(34px, 7vw, 92px);
+  grid-template-columns: minmax(0, 0.9fr) minmax(460px, 1.08fr);
+  gap: clamp(34px, 5vw, 72px);
   align-items: center;
   padding-top: 52px;
 }
@@ -140,7 +178,7 @@
 .copy h1 {
   margin: 20px 0 0;
   font-family: "Plus Jakarta Sans", Inter, system-ui, sans-serif;
-  font-size: clamp(42px, 6.8vw, 82px);
+  font-size: clamp(42px, 6.7vw, 84px);
   font-weight: 900;
   line-height: 0.95;
   letter-spacing: 0;
@@ -179,9 +217,10 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 50px;
+  min-height: 52px;
   border-radius: 12px;
   padding: 0 18px;
+  border: 0;
   font-size: 14px;
   font-weight: 900;
   text-transform: uppercase;
@@ -192,6 +231,7 @@
   gap: 8px;
   background: #a3e635;
   color: #102018;
+  cursor: pointer;
   box-shadow: 0 14px 34px rgba(163, 230, 53, 0.28);
 }
 
@@ -278,49 +318,64 @@
 
 .visual {
   position: relative;
-  min-height: 520px;
+  display: flex;
+  min-height: 720px;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 18px;
 }
 
-.visual::before {
-  content: "";
-  position: absolute;
-  inset: -42px -20px -60px;
-  background:
-    linear-gradient(90deg, rgba(8, 13, 35, 0.2), rgba(14, 165, 233, 0.16)),
-    url("https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=1000&q=80") center / cover;
+.visual > img {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 560px);
+  height: auto;
+  max-height: min(82vh, 860px);
   border-radius: 36px;
-  opacity: 0.72;
-  filter: saturate(1.08);
+  object-fit: contain;
+  object-position: center;
+  box-shadow: 0 42px 90px rgba(0, 0, 0, 0.38);
+  filter: saturate(1.05);
 }
 
 .visual::after {
   content: "";
   position: absolute;
-  inset: -42px -20px -60px;
-  border-radius: 36px;
+  z-index: 1;
+  top: 50%;
+  right: -34px;
+  width: min(100%, 700px);
+  height: min(84vh, 900px);
+  transform: translateY(-53%);
+  border-radius: 44px;
   background:
-    linear-gradient(90deg, rgba(6, 17, 31, 0.98), rgba(6, 17, 31, 0.36) 42%, rgba(14, 165, 233, 0.28)),
-    radial-gradient(circle at 75% 20%, rgba(103, 232, 249, 0.32), transparent 38%);
+    linear-gradient(90deg, rgba(6, 17, 31, 0.8), rgba(6, 17, 31, 0.08) 42%, rgba(14, 165, 233, 0.2)),
+    radial-gradient(circle at 75% 16%, rgba(103, 232, 249, 0.24), transparent 34%);
+  pointer-events: none;
 }
 
 .aiPanel {
   position: relative;
   z-index: 2;
-  width: min(100%, 390px);
-  margin: 76px 0 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  width: min(100%, 600px);
   border: 1px solid rgba(255, 255, 255, 0.22);
-  border-radius: 24px;
-  background: rgba(15, 23, 42, 0.68);
-  padding: 18px;
+  border-radius: 22px;
+  background: rgba(15, 23, 42, 0.84);
+  padding: 16px;
   box-shadow: 0 34px 80px rgba(0, 0, 0, 0.35);
   backdrop-filter: blur(18px);
 }
 
 .panelHeader {
+  grid-column: 1 / -1;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 14px;
+  margin-bottom: 4px;
 }
 
 .panelHeader span {
@@ -342,11 +397,7 @@
   gap: 12px;
   border-radius: 14px;
   background: rgba(255, 255, 255, 0.12);
-  padding: 12px;
-}
-
-.flowItem + .flowItem {
-  margin-top: 10px;
+  padding: 11px 12px;
 }
 
 .flowItem > span {
@@ -375,7 +426,8 @@
 }
 
 .terminal {
-  margin-top: 14px;
+  grid-column: 1 / -1;
+  margin-top: 4px;
   border-radius: 14px;
   background: rgba(2, 6, 23, 0.82);
   padding: 14px;
@@ -389,25 +441,102 @@
   margin: 0;
 }
 
-.faceCard {
-  position: absolute;
-  z-index: 3;
-  right: 34px;
-  top: 34px;
-  display: grid;
-  width: 78px;
-  height: 78px;
-  place-items: center;
-  border: 1px solid rgba(103, 232, 249, 0.26);
-  border-radius: 24px;
-  background: rgba(14, 165, 233, 0.16);
-  color: #67e8f9;
-  backdrop-filter: blur(18px);
+.formToggle {
+  position: fixed;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
 }
 
-.faceCard svg {
-  width: 42px;
-  height: 42px;
+.formModal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: none;
+  place-items: center;
+  padding: 22px;
+}
+
+.formToggle:checked ~ .formModal {
+  display: grid;
+}
+
+.formBackdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.78);
+  backdrop-filter: blur(12px);
+  cursor: pointer;
+}
+
+.formCard {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 720px);
+  max-height: min(86vh, 820px);
+  overflow: auto;
+  border: 1px solid rgba(103, 232, 249, 0.26);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 10% 0%, rgba(91, 61, 245, 0.18), transparent 32%),
+    #ffffff;
+  padding: clamp(24px, 4vw, 40px);
+  color: #111827;
+  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.42);
+}
+
+.closeButton {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border: 0;
+  border-radius: 999px;
+  background: #eef2ff;
+  color: #111827;
+  cursor: pointer;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.formKicker {
+  margin: 0 0 8px;
+  color: #5b3df5;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.formCard h2 {
+  margin: 0;
+  font-family: "Plus Jakarta Sans", Inter, system-ui, sans-serif;
+  font-size: clamp(30px, 5vw, 48px);
+  line-height: 1.05;
+  text-align: center;
+}
+
+.formCopy {
+  max-width: 520px;
+  margin: 14px auto 24px;
+  color: #475569;
+  font-size: 16px;
+  line-height: 1.55;
+  text-align: center;
+}
+
+.activeFormWrap {
+  display: flex;
+  justify-content: center;
+}
+
+.activeFormWrap > div {
+  width: min(100%, 560px);
 }
 
 @media (max-width: 960px) {
@@ -416,17 +545,53 @@
   }
 
   .visual {
-    min-height: 430px;
+    min-height: auto;
+    display: grid;
+    gap: 16px;
+  }
+
+  .visual > img,
+  .aiPanel {
+    position: relative;
+    inset: auto;
+    width: 100%;
+  }
+
+  .visual > img {
+    width: min(100%, 560px);
+    max-height: none;
+    justify-self: center;
   }
 
   .aiPanel {
-    margin-left: 0;
+    grid-template-columns: 1fr;
+  }
+
+  .panelHeader,
+  .terminal {
+    grid-column: auto;
+  }
+
+  .visual::after {
+    display: none;
   }
 }
 
 @media (max-width: 640px) {
+  .stickyEventBar {
+    min-height: 86px;
+    flex-wrap: wrap;
+    gap: 8px 14px;
+    padding: 10px 12px;
+    font-size: 10px;
+  }
+
+  .stickyEventBar span {
+    gap: 5px;
+  }
+
   .hero {
-    padding-inline: 16px;
+    padding: 118px 16px 48px;
   }
 
   .header {
@@ -446,12 +611,8 @@
     grid-template-columns: 1fr;
   }
 
-  .visual::before,
-  .visual::after {
-    inset: 0;
-  }
-
-  .aiPanel {
-    margin: 34px auto;
+  .primaryButton,
+  .secondaryButton {
+    width: 100%;
   }
 }
