@@ -33,6 +33,11 @@ const EBIA_META_PIXEL_BOOTSTRAP = `
     window.fbq('init', pixelId);
     window.__EBIA_META_PIXEL_INITIALIZED__ = true;
   }
+
+  if (typeof window.fbq === 'function' && !window.__EBIA_META_PIXEL_PAGEVIEW_TRACKED__) {
+    window.fbq('track', 'PageView');
+    window.__EBIA_META_PIXEL_PAGEVIEW_TRACKED__ = true;
+  }
 })();
 `
 

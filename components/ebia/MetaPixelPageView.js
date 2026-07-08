@@ -11,6 +11,11 @@ export default function MetaPixelPageView() {
   useEffect(() => {
     if (!pathname || lastPathname.current === pathname) return;
 
+    if (lastPathname.current === null) {
+      lastPathname.current = pathname;
+      return;
+    }
+
     lastPathname.current = pathname;
     trackPageView();
   }, [pathname]);
