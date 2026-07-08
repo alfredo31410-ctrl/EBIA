@@ -91,7 +91,7 @@ export default function AccesoGratisPage() {
 
           <div className={styles.visual} aria-label="Instructora de EBIA para la clase gratis">
             <img
-              src="/landings/ia-desde-cero/instructora-ebia.jpeg"
+              src="/ia-desde-cero/instructora-ebia.jpeg"
               alt="Instructora de EBIA para la clase gratis de inteligencia artificial"
             />
 
@@ -154,7 +154,8 @@ export default function AccesoGratisPage() {
       <Script src="https://cefincapacitacion.activehosted.com/f/embed.php?id=273" strategy="afterInteractive" />
       <ActiveCampaignRegistrationTracker
         contentName="Acceso gratis ActiveCampaign form"
-        redirectUrl="/landings/gracias"
+        redirectUrl="/ia-desde-cero/gracias"
+        trackEvent="none"
       />
     </main>
   );

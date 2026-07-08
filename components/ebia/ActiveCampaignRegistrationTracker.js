@@ -30,6 +30,7 @@ export default function ActiveCampaignRegistrationTracker({
   selector = '._form_273',
   contentName = 'ActiveCampaign registration form',
   redirectUrl,
+  trackEvent = 'CompleteRegistration',
 }) {
   useEffect(() => {
     const root = document.querySelector(selector);
@@ -46,9 +47,11 @@ export default function ActiveCampaignRegistrationTracker({
     };
 
     const trackRegistration = () => {
-      trackCompleteRegistrationOnce({
-        content_name: contentName,
-      });
+      if (trackEvent === 'CompleteRegistration') {
+        trackCompleteRegistrationOnce({
+          content_name: contentName,
+        });
+      }
       redirectAfterSuccess();
     };
 
@@ -90,7 +93,7 @@ export default function ActiveCampaignRegistrationTracker({
         window._form_callback = previousCallback;
       }
     };
-  }, [contentName, redirectUrl, selector]);
+  }, [contentName, redirectUrl, selector, trackEvent]);
 
   return null;
 }

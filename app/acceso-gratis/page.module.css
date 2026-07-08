@@ -326,6 +326,25 @@
   gap: 18px;
 }
 
+.visual::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  right: -8px;
+  bottom: 72px;
+  width: min(92%, 620px);
+  height: 220px;
+  border-radius: 32px;
+  background:
+    linear-gradient(180deg, rgba(6, 17, 31, 0), rgba(6, 17, 31, 0.74)),
+    linear-gradient(rgba(103, 232, 249, 0.14) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(103, 232, 249, 0.12) 1px, transparent 1px),
+    radial-gradient(circle at 64% 20%, rgba(163, 230, 53, 0.16), transparent 45%);
+  background-size: auto, 34px 34px, 34px 34px, auto;
+  box-shadow: 0 28px 70px rgba(2, 6, 23, 0.26);
+  pointer-events: none;
+}
+
 .visual > img {
   position: relative;
   z-index: 1;

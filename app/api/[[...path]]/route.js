@@ -293,8 +293,8 @@ const landingCourseUpdates = [
       image_url:
         'https://images.pexels.com/photos/6282022/pexels-photo-6282022.jpeg',
       price: 0,
-      landing_url: 'https://ebia-landings.vercel.app/ia-desde-cero/',
-      signup_url: 'https://ebia-landings.vercel.app/ia-desde-cero/',
+      landing_url: 'https://ebiacapacitacion.com/ia-desde-cero',
+      signup_url: 'https://ebiacapacitacion.com/ia-desde-cero',
       signup_event: 'none',
       is_active: true,
       featured: true,
@@ -346,8 +346,8 @@ const landingCourseUpdates = [
       image_url:
         'https://images.unsplash.com/photo-1541178735493-479c1a27ed24',
       price: 190,
-      landing_url: 'https://ebia-landings.vercel.app/reto-5-dias-ia/',
-      signup_url: 'https://ebia-landings.vercel.app/reto-5-dias-ia/',
+      landing_url: 'https://ebiacapacitacion.com/reto-5-dias-ia',
+      signup_url: 'https://ebiacapacitacion.com/reto-5-dias-ia',
       signup_event: 'none',
       is_active: true,
       featured: true,
