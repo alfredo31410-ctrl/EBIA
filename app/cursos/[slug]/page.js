@@ -44,10 +44,15 @@ function CursoDetail({ params }) {
   }
 
   const waMsg = `Hola EBIA, me interesa el curso "${course.title}". ¿Pueden darme más información?`;
+  const numericPrice = course.price != null && course.price !== '' ? Number(course.price) : null;
+  const hasPrice = Number.isFinite(numericPrice) && numericPrice > 0;
+  const signupHref = course.signup_url || course.landing_url || '/acceso-gratis';
+  const signupEventName =
+    course.signup_event === 'none' ? undefined : course.signup_event || 'InitiateCheckout';
   const checkoutParams = {
     content_name: course.title,
     content_category: course.category,
-    ...(course.price ? { value: Number(course.price), currency: 'MXN' } : {}),
+    ...(hasPrice ? { value: numericPrice, currency: 'MXN' } : {}),
   };
 
   return (
@@ -73,15 +78,22 @@ function CursoDetail({ params }) {
                 </p>
               )}
               <div className="mt-8 flex flex-wrap items-center gap-4">
-                {course.price && (
+                {hasPrice && (
                   <div>
-                    <div className="text-4xl font-extrabold">${course.price} <span className="text-base font-medium text-muted-foreground">MXN</span></div>
+                    <div className="text-4xl font-extrabold">${numericPrice} <span className="text-base font-medium text-muted-foreground">MXN</span></div>
                     <p className="text-sm text-muted-foreground">Pago único · acceso de por vida</p>
                   </div>
                 )}
                 <div className="flex gap-2 flex-wrap">
                   <Button asChild size="lg" className="h-12 px-6 bg-[#25D366] hover:bg-[#1ebe5b] text-white">
-                    <a href="/acceso-gratis" onClick={() => trackInitiateCheckout(checkoutParams)}>
+                    <a
+                      href={signupHref}
+                      onClick={() => {
+                        if (signupEventName === 'InitiateCheckout') {
+                          trackInitiateCheckout(checkoutParams);
+                        }
+                      }}
+                    >
                       <MessageCircle className="h-4 w-4 mr-2" fill="currentColor" /> Inscribirme
                     </a>
                   </Button>

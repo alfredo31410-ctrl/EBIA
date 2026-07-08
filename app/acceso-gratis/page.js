@@ -152,7 +152,10 @@ export default function AccesoGratisPage() {
       </section>
 
       <Script src="https://cefincapacitacion.activehosted.com/f/embed.php?id=273" strategy="afterInteractive" />
-      <ActiveCampaignRegistrationTracker contentName="Acceso gratis ActiveCampaign form" />
+      <ActiveCampaignRegistrationTracker
+        contentName="Acceso gratis ActiveCampaign form"
+        redirectUrl="/landings/gracias"
+      />
     </main>
   );
 }

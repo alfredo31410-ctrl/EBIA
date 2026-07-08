@@ -5,9 +5,11 @@ import TrackedAnchor from '@/components/ebia/TrackedAnchor';
 import { whatsappLink } from '@/lib/ebia/constants';
 import styles from './page.module.css';
 
-const whatsappUrl = whatsappLink(
-  'Hola EBIA, ya vi la pagina de registro. Quiero unirme al grupo y recibir el acceso.'
-);
+const whatsappUrl =
+  process.env.NEXT_PUBLIC_WHATSAPP_GROUP_URL ||
+  whatsappLink(
+    'Hola EBIA, ya vi la pagina de registro. Quiero unirme al grupo y recibir el acceso.'
+  );
 
 export const metadata = {
   title: 'Registro casi completo | EBIA',

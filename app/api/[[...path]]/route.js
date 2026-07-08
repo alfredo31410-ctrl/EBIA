@@ -279,6 +279,129 @@ function clean(doc) {
   return rest
 }
 
+const landingCourseUpdates = [
+  {
+    slugs: ['inteligencia-artificial-desde-cero'],
+    data: {
+      title: 'Clase gratis de IA desde cero',
+      category: 'ia',
+      level: 'principiante',
+      short_description:
+        'Aprende a usar Inteligencia Artificial para trabajar mas rapido, ordenar ideas y crear mejores prompts sin tecnicismos.',
+      full_description:
+        'Clase gratuita en vivo para principiantes que quieren aprender Inteligencia Artificial desde cero y aplicarla en tareas reales.',
+      image_url:
+        'https://images.pexels.com/photos/6282022/pexels-photo-6282022.jpeg',
+      price: 0,
+      landing_url: 'https://ebia-landings.vercel.app/ia-desde-cero',
+      signup_url: 'https://ebia-landings.vercel.app/ia-desde-cero',
+      signup_event: 'none',
+      is_active: true,
+      featured: true,
+      promise:
+        'En una clase gratis vas a entender como empezar a usar IA paso a paso.',
+      learn: [
+        'Usar IA sin tecnicismos',
+        'Crear prompts claros',
+        'Aplicar IA en tareas reales',
+      ],
+      audience: [
+        'Personas que quieren empezar desde cero',
+        'Profesionales que buscan ahorrar tiempo',
+        'Emprendedores y estudiantes',
+      ],
+      syllabus: [
+        {
+          title: 'Clase gratis',
+          items: [
+            'Que es la IA y como usarla',
+            'Prompts utiles para el dia a dia',
+            'Aplicaciones practicas para trabajo y estudio',
+          ],
+        },
+      ],
+      benefits: [
+        'Acceso gratuito a la clase',
+        'Explicacion paso a paso',
+        'Ejemplos practicos',
+      ],
+      faqs: [
+        {
+          q: 'Necesito saber programar?',
+          a: 'No. La clase esta pensada para personas que empiezan desde cero.',
+        },
+      ],
+    },
+  },
+  {
+    slugs: ['excel-practico-desde-cero'],
+    data: {
+      title: 'Reto 5 dias IA',
+      category: 'ia',
+      level: 'principiante',
+      short_description:
+        'Reto practico para pasar de no saber nada a usar Inteligencia Artificial con claridad en 5 dias.',
+      full_description:
+        'Reto intensivo en vivo para aprender lo esencial de Inteligencia Artificial con estructura, ejemplos claros y ejercicios aplicables.',
+      image_url:
+        'https://images.unsplash.com/photo-1541178735493-479c1a27ed24',
+      price: 190,
+      landing_url: 'https://ebia-landings.vercel.app/reto%205%20dias%20IA',
+      signup_url: 'https://ebia-landings.vercel.app/reto%205%20dias%20IA',
+      signup_event: 'none',
+      is_active: true,
+      featured: true,
+      promise:
+        'En 5 dias vas a construir una base practica para usar IA con criterio.',
+      learn: [
+        'Entender que pedirle a la IA',
+        'Construir prompts utiles',
+        'Aplicar IA en tareas reales',
+        'Crear un plan de accion para seguir practicando',
+      ],
+      audience: [
+        'Personas que empiezan desde cero',
+        'Profesionales que quieren actualizarse',
+        'Emprendedores y estudiantes',
+      ],
+      syllabus: [
+        {
+          title: 'Ruta de 5 dias',
+          items: [
+            'Entiende la IA',
+            'Prompts utiles',
+            'Trabajo real',
+            'Flujos simples',
+            'Plan de accion',
+          ],
+        },
+      ],
+      benefits: [
+        '5 sesiones en vivo',
+        'Ejemplos practicos',
+        'Acompanamiento paso a paso',
+      ],
+      faqs: [
+        {
+          q: 'El boton de pago ya esta activo?',
+          a: 'Todavia no. El checkout se conectara cuando este listo Hotmart.',
+        },
+      ],
+    },
+  },
+]
+
+async function syncLandingCourseUpdates(db) {
+  await Promise.all(
+    landingCourseUpdates.map(({ slugs, data }) =>
+      db.collection('courses').updateOne(
+        { slug: { $in: slugs } },
+        { $set: data }
+      )
+    )
+  )
+}
+
 // ---------- Seed data ----------
 async function seedIfEmpty(db) {
   const count = await db.collection('courses').countDocuments()
@@ -650,9 +773,10 @@ async function handleRoute(request, { params }) {
     const db = await connectToMongo()
 
     await seedIfEmpty(db)
+    await syncLandingCourseUpdates(db)
 
     // ===== COURSES public =====
-    if (route === '/courses' && method === 'GET') {
+    if ((route === '/courses' || route === '/cursos') && method === 'GET') {
       const url = new URL(request.url)
       const category = url.searchParams.get('category')
       const featured = url.searchParams.get('featured')
@@ -674,8 +798,14 @@ async function handleRoute(request, { params }) {
       return handleCORS(NextResponse.json(items.map(clean)))
     }
 
-    if (route.startsWith('/courses/slug/') && method === 'GET') {
-      const slug = route.replace('/courses/slug/', '')
+    if (
+      (route.startsWith('/courses/slug/') ||
+        route.startsWith('/cursos/slug/')) &&
+      method === 'GET'
+    ) {
+      const slug = route
+        .replace('/courses/slug/', '')
+        .replace('/cursos/slug/', '')
       const item = await db.collection('courses').findOne({ slug })
 
       if (!item) {
@@ -691,7 +821,10 @@ async function handleRoute(request, { params }) {
     }
 
     // ===== COURSES admin =====
-    if (route === '/admin/courses' && method === 'GET') {
+    if (
+      (route === '/admin/courses' || route === '/admin/cursos') &&
+      method === 'GET'
+    ) {
       if (!requireAdmin(request)) {
         return handleCORS(
           NextResponse.json(
@@ -710,7 +843,10 @@ async function handleRoute(request, { params }) {
       return handleCORS(NextResponse.json(items.map(clean)))
     }
 
-    if (route === '/admin/courses' && method === 'POST') {
+    if (
+      (route === '/admin/courses' || route === '/admin/cursos') &&
+      method === 'POST'
+    ) {
       if (!requireAdmin(request)) {
         return handleCORS(
           NextResponse.json(
@@ -768,7 +904,11 @@ async function handleRoute(request, { params }) {
       return handleCORS(NextResponse.json(clean(doc)))
     }
 
-    if (route.startsWith('/admin/courses/') && method === 'PUT') {
+    if (
+      (route.startsWith('/admin/courses/') ||
+        route.startsWith('/admin/cursos/')) &&
+      method === 'PUT'
+    ) {
       if (!requireAdmin(request)) {
         return handleCORS(
           NextResponse.json(
@@ -778,7 +918,9 @@ async function handleRoute(request, { params }) {
         )
       }
 
-      const id = route.replace('/admin/courses/', '')
+      const id = route
+        .replace('/admin/courses/', '')
+        .replace('/admin/cursos/', '')
       const body = await request.json()
       const update = {
         ...body,
@@ -804,7 +946,11 @@ async function handleRoute(request, { params }) {
       return handleCORS(NextResponse.json(clean(updated)))
     }
 
-    if (route.startsWith('/admin/courses/') && method === 'DELETE') {
+    if (
+      (route.startsWith('/admin/courses/') ||
+        route.startsWith('/admin/cursos/')) &&
+      method === 'DELETE'
+    ) {
       if (!requireAdmin(request)) {
         return handleCORS(
           NextResponse.json(
@@ -814,7 +960,9 @@ async function handleRoute(request, { params }) {
         )
       }
 
-      const id = route.replace('/admin/courses/', '')
+      const id = route
+        .replace('/admin/courses/', '')
+        .replace('/admin/cursos/', '')
 
       await db.collection('courses').deleteOne({ id })
 
