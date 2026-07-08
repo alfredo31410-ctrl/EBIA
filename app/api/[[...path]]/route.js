@@ -391,6 +391,39 @@ const landingCourseUpdates = [
   },
 ]
 
+const LANDING_COURSE_SLUGS = new Set(
+  landingCourseUpdates.flatMap(({ slugs }) => slugs)
+)
+
+const COURSE_DISPLAY_PRIORITY = [
+  'inteligencia-artificial-desde-cero',
+  'excel-practico-desde-cero',
+]
+
+function getCourseDisplayPriority(course) {
+  const index = COURSE_DISPLAY_PRIORITY.indexOf(course.slug)
+
+  return index === -1 ? COURSE_DISPLAY_PRIORITY.length : index
+}
+
+function sortCoursesForCatalog(courses) {
+  return courses.sort(
+    (a, b) => getCourseDisplayPriority(a) - getCourseDisplayPriority(b)
+  )
+}
+
+function cleanPublicCourse(doc) {
+  const course = clean(doc)
+
+  if (!LANDING_COURSE_SLUGS.has(course.slug)) {
+    delete course.landing_url
+    delete course.signup_url
+    delete course.signup_event
+  }
+
+  return course
+}
+
 async function syncLandingCourseUpdates(db) {
   await Promise.all(
     landingCourseUpdates.map(({ slugs, data }) =>
@@ -795,7 +828,9 @@ async function handleRoute(request, { params }) {
         .sort({ created_at: -1 })
         .toArray()
 
-      return handleCORS(NextResponse.json(items.map(clean)))
+      return handleCORS(
+        NextResponse.json(sortCoursesForCatalog(items.map(cleanPublicCourse)))
+      )
     }
 
     if (
@@ -817,7 +852,7 @@ async function handleRoute(request, { params }) {
         )
       }
 
-      return handleCORS(NextResponse.json(clean(item)))
+      return handleCORS(NextResponse.json(cleanPublicCourse(item)))
     }
 
     // ===== COURSES admin =====

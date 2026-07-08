@@ -46,7 +46,7 @@ function CursoDetail({ params }) {
   const waMsg = `Hola EBIA, me interesa el curso "${course.title}". ¿Pueden darme más información?`;
   const numericPrice = course.price != null && course.price !== '' ? Number(course.price) : null;
   const hasPrice = Number.isFinite(numericPrice) && numericPrice > 0;
-  const signupHref = course.signup_url || course.landing_url || '/acceso-gratis';
+  const signupHref = course.signup_url || course.landing_url || course.whatsapp_url || whatsappLink(waMsg);
   const signupEventName =
     course.signup_event === 'none' ? undefined : course.signup_event || 'InitiateCheckout';
   const checkoutParams = {

@@ -25,8 +25,9 @@ const CourseLink = forwardRef(function CourseLink({ href, className, children, .
 export default function CourseCard({ course }) {
   const numericPrice = course.price != null && course.price !== '' ? Number(course.price) : null;
   const hasPrice = Number.isFinite(numericPrice) && numericPrice > 0;
-  const infoHref = course.landing_url || `/cursos/${course.slug}`;
-  const signupHref = course.signup_url || course.landing_url || '/acceso-gratis';
+  const detailHref = `/cursos/${course.slug}`;
+  const infoHref = course.landing_url || detailHref;
+  const signupHref = course.signup_url || course.landing_url || detailHref;
   const signupEventName =
     course.signup_event === 'none' ? undefined : course.signup_event || 'InitiateCheckout';
   const checkoutParams = {
