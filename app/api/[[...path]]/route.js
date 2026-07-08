@@ -283,11 +283,11 @@ const landingCourseUpdates = [
   {
     slugs: ['inteligencia-artificial-desde-cero'],
     data: {
-      title: 'Clase gratis de IA desde cero',
+      title: 'Inteligencia Artificial desde cero',
       category: 'ia',
       level: 'principiante',
       short_description:
-        'Aprende a usar Inteligencia Artificial para trabajar mas rapido, ordenar ideas y crear mejores prompts sin tecnicismos.',
+        'Aprende que es la IA, como se usa en el dia a dia y como aprovecharla en tu vida y trabajo.',
       full_description:
         'Clase gratuita en vivo para principiantes que quieren aprender Inteligencia Artificial desde cero y aplicarla en tareas reales.',
       image_url:

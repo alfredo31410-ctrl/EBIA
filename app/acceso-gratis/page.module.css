@@ -329,25 +329,27 @@
 .visual::before {
   content: "";
   position: absolute;
-  z-index: 0;
-  right: -8px;
-  bottom: 72px;
-  width: min(92%, 620px);
-  height: 220px;
-  border-radius: 32px;
+  z-index: 2;
+  right: -24px;
+  bottom: 28px;
+  width: min(108%, 720px);
+  height: 310px;
+  border-radius: 38px;
   background:
-    linear-gradient(180deg, rgba(6, 17, 31, 0), rgba(6, 17, 31, 0.74)),
-    linear-gradient(rgba(103, 232, 249, 0.14) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(103, 232, 249, 0.12) 1px, transparent 1px),
-    radial-gradient(circle at 64% 20%, rgba(163, 230, 53, 0.16), transparent 45%);
-  background-size: auto, 34px 34px, 34px 34px, auto;
-  box-shadow: 0 28px 70px rgba(2, 6, 23, 0.26);
+    linear-gradient(180deg, rgba(6, 17, 31, 0.08), rgba(6, 17, 31, 0.88)),
+    linear-gradient(rgba(103, 232, 249, 0.26) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(103, 232, 249, 0.22) 1px, transparent 1px),
+    radial-gradient(circle at 66% 12%, rgba(163, 230, 53, 0.22), transparent 48%);
+  background-size: auto, 32px 32px, 32px 32px, auto;
+  box-shadow:
+    0 32px 78px rgba(2, 6, 23, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
   pointer-events: none;
 }
 
 .visual > img {
   position: relative;
-  z-index: 1;
+  z-index: 3;
   width: min(100%, 560px);
   height: auto;
   max-height: min(82vh, 860px);
@@ -376,7 +378,7 @@
 
 .aiPanel {
   position: relative;
-  z-index: 2;
+  z-index: 4;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 10px;
