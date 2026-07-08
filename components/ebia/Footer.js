@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Logo from './Logo';
 import { Mail, MessageCircle } from 'lucide-react';
+import TrackedAnchor from './TrackedAnchor';
 import { whatsappLink } from '@/lib/ebia/constants';
 
 export default function Footer() {
@@ -26,7 +27,7 @@ export default function Footer() {
           <div>
             <h4 className="font-bold text-sm mb-4 uppercase tracking-wider text-muted-foreground">Contáctanos</h4>
             <ul className="space-y-2.5 text-sm">
-              <li><a href={whatsappLink()} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 hover:text-primary"><MessageCircle className="h-4 w-4" /> WhatsApp</a></li>
+              <li><TrackedAnchor eventName="WhatsAppClick" eventParams={{ content_name: 'Footer WhatsApp link' }} href={whatsappLink()} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 hover:text-primary"><MessageCircle className="h-4 w-4" /> WhatsApp</TrackedAnchor></li>
               <li><a href="mailto:hola@ebia.com" className="inline-flex items-center gap-2 hover:text-primary"><Mail className="h-4 w-4" /> hola@ebia.com</a></li>
             </ul>
           </div>

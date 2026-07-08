@@ -2,9 +2,16 @@ import Link from 'next/link';
 import { ArrowRight, MessageCircle } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import TrackedAnchor from './TrackedAnchor';
 import { getCategoryLabel, getLevelLabel } from '@/lib/ebia/constants';
 
 export default function CourseCard({ course }) {
+  const checkoutParams = {
+    content_name: course.title,
+    content_category: course.category,
+    ...(course.price ? { value: Number(course.price), currency: 'MXN' } : {}),
+  };
+
   return (
     <div className="group flex flex-col rounded-2xl bg-card border border-border overflow-hidden hover:shadow-2xl hover:shadow-primary/5 hover:-translate-y-1 transition-all duration-300">
       <Link href={`/cursos/${course.slug}`} className="block aspect-[16/10] overflow-hidden bg-muted">
@@ -39,9 +46,9 @@ export default function CourseCard({ course }) {
             <Link href={`/cursos/${course.slug}`}>Información <ArrowRight className="h-3.5 w-3.5 ml-1" /></Link>
           </Button>
           <Button asChild size="sm" className="flex-1 bg-[#25D366] hover:bg-[#1ebe5b] text-white">
-            <a href="/acceso-gratis">
+            <TrackedAnchor eventName="InitiateCheckout" eventParams={checkoutParams} href="/acceso-gratis">
               <MessageCircle className="h-3.5 w-3.5 mr-1" fill="currentColor" /> Inscribirme
-            </a>
+            </TrackedAnchor>
           </Button>
         </div>
       </div>

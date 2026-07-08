@@ -11,6 +11,7 @@ import Navbar from '@/components/ebia/Navbar';
 import Footer from '@/components/ebia/Footer';
 import WhatsappButton from '@/components/ebia/WhatsappButton';
 import { getCategoryLabel, getLevelLabel, whatsappLink } from '@/lib/ebia/constants';
+import { trackInitiateCheckout, trackWhatsAppClick } from '@/lib/meta-pixel';
 
 const fetcher = (url) => fetch(url).then(r => r.ok ? r.json() : Promise.reject(r));
 
@@ -43,6 +44,11 @@ function CursoDetail({ params }) {
   }
 
   const waMsg = `Hola EBIA, me interesa el curso "${course.title}". ¿Pueden darme más información?`;
+  const checkoutParams = {
+    content_name: course.title,
+    content_category: course.category,
+    ...(course.price ? { value: Number(course.price), currency: 'MXN' } : {}),
+  };
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -75,7 +81,7 @@ function CursoDetail({ params }) {
                 )}
                 <div className="flex gap-2 flex-wrap">
                   <Button asChild size="lg" className="h-12 px-6 bg-[#25D366] hover:bg-[#1ebe5b] text-white">
-                    <a href="/acceso-gratis">
+                    <a href="/acceso-gratis" onClick={() => trackInitiateCheckout(checkoutParams)}>
                       <MessageCircle className="h-4 w-4 mr-2" fill="currentColor" /> Inscribirme
                     </a>
                   </Button>
@@ -189,7 +195,12 @@ function CursoDetail({ params }) {
               <h3 className="font-bold text-lg mb-2">¿Tienes dudas?</h3>
               <p className="text-sm text-white/85 mb-4">Escríbenos a WhatsApp y te respondemos personalmente.</p>
               <Button asChild className="w-full bg-white text-primary hover:bg-white/90">
-                <a href={course.whatsapp_url || whatsappLink(waMsg)} target="_blank" rel="noreferrer">
+                <a
+                  href={course.whatsapp_url || whatsappLink(waMsg)}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={() => trackWhatsAppClick({ content_name: course.title, location: 'Course detail card' })}
+                >
                   <MessageCircle className="h-4 w-4 mr-2" fill="currentColor" /> Hablar por WhatsApp
                 </a>
               </Button>

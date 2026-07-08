@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Script from 'next/script';
 import { ArrowRight, CalendarDays, Clock3, MapPin, Sparkles } from 'lucide-react';
+import ActiveCampaignRegistrationTracker from '@/components/ebia/ActiveCampaignRegistrationTracker';
 import styles from './page.module.css';
 
 const highlights = ['Prompts utiles', 'IA practica', 'Sin tecnicismos'];
@@ -151,6 +152,7 @@ export default function AccesoGratisPage() {
       </section>
 
       <Script src="https://cefincapacitacion.activehosted.com/f/embed.php?id=273" strategy="afterInteractive" />
+      <ActiveCampaignRegistrationTracker contentName="Acceso gratis ActiveCampaign form" />
     </main>
   );
 }

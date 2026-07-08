@@ -14,6 +14,7 @@ import Navbar from '@/components/ebia/Navbar';
 import Footer from '@/components/ebia/Footer';
 import WhatsappButton from '@/components/ebia/WhatsappButton';
 import { whatsappLink } from '@/lib/ebia/constants';
+import { trackLead, trackWhatsAppClick } from '@/lib/meta-pixel';
 
 const faqs = [
   { q: '¿Necesito experiencia previa?', a: 'No. Todos nuestros cursos empiezan desde cero, sin tecnicismos.' },
@@ -43,6 +44,9 @@ function ContactPage() {
         body: JSON.stringify(form),
       });
       if (!res.ok) throw new Error('Error al enviar');
+      trackLead({
+        content_name: 'Contact form',
+      });
       setSent(true);
       toast.success('¡Mensaje enviado! Te respondemos pronto.');
       setForm({ name: '', email: '', phone: '', message: '' });
@@ -117,7 +121,14 @@ function ContactPage() {
               <h3 className="font-bold text-lg mb-1">WhatsApp directo</h3>
               <p className="text-sm text-white/90 mb-4">La forma más rápida y cálida de hablar con nosotros.</p>
               <Button asChild className="w-full bg-white text-emerald-700 hover:bg-white/90">
-                <a href={whatsappLink()} target="_blank" rel="noreferrer">Escribir por WhatsApp</a>
+                <a
+                  href={whatsappLink()}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={() => trackWhatsAppClick({ content_name: 'Contact page WhatsApp link' })}
+                >
+                  Escribir por WhatsApp
+                </a>
               </Button>
             </div>
             <div className="bg-card border border-border rounded-2xl p-6">

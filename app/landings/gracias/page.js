@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import { ArrowLeft, CheckCircle2, MessageCircle, Sparkles } from 'lucide-react';
+import RegistrationCompleteTracker from '@/components/ebia/RegistrationCompleteTracker';
+import TrackedAnchor from '@/components/ebia/TrackedAnchor';
 import { whatsappLink } from '@/lib/ebia/constants';
 import styles from './page.module.css';
 
@@ -16,6 +18,7 @@ export const metadata = {
 export default function GraciasLanding() {
   return (
     <main className={styles.page}>
+      <RegistrationCompleteTracker contentName="Landing thank you page" />
       <div className={styles.backdrop} />
 
       <section className={styles.shell}>
@@ -59,10 +62,17 @@ export default function GraciasLanding() {
               disponible.
             </p>
 
-            <a className={styles.whatsappButton} href={whatsappUrl} target="_blank" rel="noreferrer">
+            <TrackedAnchor
+              eventName="WhatsAppClick"
+              eventParams={{ content_name: 'Thank you page WhatsApp group link' }}
+              className={styles.whatsappButton}
+              href={whatsappUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
               <MessageCircle fill="currentColor" />
               Unirme al grupo
-            </a>
+            </TrackedAnchor>
           </div>
 
           <div className={styles.visual}>
