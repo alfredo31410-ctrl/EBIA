@@ -26,6 +26,24 @@ function detectSuccess(root) {
   });
 }
 
+function getRedirectTarget(redirectUrl) {
+  if (!redirectUrl) return null;
+
+  return new URL(redirectUrl, window.location.origin).href;
+}
+
+function syncRedirectFields(root, redirectTarget) {
+  if (!redirectTarget) return;
+
+  root
+    .querySelectorAll(
+      'input[name="redirect"], input[name="_redirect"], input[name="redirect_url"], input[name="thank_you_url"], input[name="success_url"]'
+    )
+    .forEach((input) => {
+      input.value = redirectTarget;
+    });
+}
+
 export default function ActiveCampaignRegistrationTracker({
   selector = '._form_273',
   contentName = 'ActiveCampaign registration form',
@@ -37,13 +55,14 @@ export default function ActiveCampaignRegistrationTracker({
     if (!root) return undefined;
 
     let hasRedirected = false;
+    const redirectTarget = getRedirectTarget(redirectUrl);
+    syncRedirectFields(root, redirectTarget);
+
     const redirectAfterSuccess = () => {
-      if (!redirectUrl || hasRedirected) return;
+      if (!redirectTarget || hasRedirected) return;
 
       hasRedirected = true;
-      window.setTimeout(() => {
-        window.location.assign(redirectUrl);
-      }, 150);
+      window.location.replace(redirectTarget);
     };
 
     const trackRegistration = () => {
@@ -56,6 +75,7 @@ export default function ActiveCampaignRegistrationTracker({
     };
 
     const trackSuccess = () => {
+      syncRedirectFields(root, redirectTarget);
       if (!detectSuccess(root)) return;
 
       trackRegistration();
@@ -65,6 +85,11 @@ export default function ActiveCampaignRegistrationTracker({
 
     const previousCallback = window._form_callback;
     const formCallback = (id) => {
+      if (redirectTarget) {
+        trackRegistration();
+        return;
+      }
+
       if (typeof previousCallback === 'function') {
         previousCallback(id);
       }
