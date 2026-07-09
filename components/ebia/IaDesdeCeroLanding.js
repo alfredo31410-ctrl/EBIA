@@ -227,6 +227,7 @@ export default function IaDesdeCeroLanding() {
       <ActiveCampaignRegistrationTracker
         contentName="IA desde cero ActiveCampaign form"
         redirectUrl="/landings/gracias"
+        submitProxyUrl="/api/activecampaign/ia-desde-cero"
         trackEvent="none"
       />
     </>

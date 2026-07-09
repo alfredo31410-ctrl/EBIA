@@ -73,6 +73,7 @@ export default function ActiveCampaignRegistrationTracker({
   selector = '._form_273',
   contentName = 'ActiveCampaign registration form',
   redirectUrl,
+  submitProxyUrl,
   trackEvent = 'CompleteRegistration',
 }) {
   useEffect(() => {
@@ -114,20 +115,59 @@ export default function ActiveCampaignRegistrationTracker({
 
     trackSuccess();
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
       const form = event.target;
 
       if (!redirectTarget || !(form instanceof HTMLFormElement) || !root.contains(form)) {
         return;
       }
 
+      if (submitProxyUrl) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+      }
+
       if (typeof form.checkValidity === 'function' && !form.checkValidity()) {
+        if (typeof form.reportValidity === 'function') {
+          form.reportValidity();
+        }
+
         return;
       }
 
       syncRedirectFields(root, redirectTarget);
       ensureSubmissionFrame();
       form.target = SUBMIT_FRAME_NAME;
+
+      if (submitProxyUrl) {
+        const submitButtons = form.querySelectorAll('button[type="submit"], input[type="submit"]');
+        submitButtons.forEach((button) => {
+          button.disabled = true;
+          button.classList.add('processing');
+        });
+
+        try {
+          const response = await fetch(submitProxyUrl, {
+            method: 'POST',
+            body: new FormData(form),
+          });
+
+          if (!response.ok) {
+            throw new Error('ActiveCampaign proxy submit failed');
+          }
+
+          trackRegistration();
+        } catch {
+          submitButtons.forEach((button) => {
+            button.disabled = false;
+            button.classList.remove('processing');
+          });
+
+          window.alert('No se pudo enviar el registro. Revisa tus datos e intenta de nuevo.');
+        }
+
+        return;
+      }
 
       window.setTimeout(trackRegistration, 900);
     };
@@ -170,7 +210,7 @@ export default function ActiveCampaignRegistrationTracker({
         window._form_callback = previousCallback;
       }
     };
-  }, [contentName, redirectUrl, selector, trackEvent]);
+  }, [contentName, redirectUrl, selector, submitProxyUrl, trackEvent]);
 
   return null;
 }
