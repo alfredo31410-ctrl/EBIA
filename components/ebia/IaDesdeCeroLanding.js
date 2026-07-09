@@ -226,7 +226,7 @@ export default function IaDesdeCeroLanding() {
       <Script src="https://cefincapacitacion.activehosted.com/f/embed.php?id=273" strategy="afterInteractive" />
       <ActiveCampaignRegistrationTracker
         contentName="IA desde cero ActiveCampaign form"
-        redirectUrl="/ia-desde-cero/gracias"
+        redirectUrl="/landings/gracias"
         trackEvent="none"
       />
     </>

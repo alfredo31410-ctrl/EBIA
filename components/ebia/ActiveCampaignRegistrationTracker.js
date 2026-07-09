@@ -12,6 +12,8 @@ const SUCCESS_SELECTORS = [
   '[data-form-success]',
 ];
 
+const SUBMIT_FRAME_NAME = 'ebia-activecampaign-submit-frame';
+
 function isVisible(element) {
   if (!element) return false;
 
@@ -44,6 +46,29 @@ function syncRedirectFields(root, redirectTarget) {
     });
 }
 
+function syncFormTargets(root, redirectTarget) {
+  if (!redirectTarget) return;
+
+  root.querySelectorAll('form').forEach((form) => {
+    form.target = SUBMIT_FRAME_NAME;
+  });
+}
+
+function ensureSubmissionFrame() {
+  let frame = document.querySelector(`iframe[name="${SUBMIT_FRAME_NAME}"]`);
+
+  if (!frame) {
+    frame = document.createElement('iframe');
+    frame.name = SUBMIT_FRAME_NAME;
+    frame.title = 'Formulario de registro EBIA';
+    frame.style.display = 'none';
+    frame.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(frame);
+  }
+
+  return frame;
+}
+
 export default function ActiveCampaignRegistrationTracker({
   selector = '._form_273',
   contentName = 'ActiveCampaign registration form',
@@ -56,7 +81,12 @@ export default function ActiveCampaignRegistrationTracker({
 
     let hasRedirected = false;
     const redirectTarget = getRedirectTarget(redirectUrl);
+    if (redirectTarget) {
+      ensureSubmissionFrame();
+    }
+
     syncRedirectFields(root, redirectTarget);
+    syncFormTargets(root, redirectTarget);
 
     const redirectAfterSuccess = () => {
       if (!redirectTarget || hasRedirected) return;
@@ -76,12 +106,33 @@ export default function ActiveCampaignRegistrationTracker({
 
     const trackSuccess = () => {
       syncRedirectFields(root, redirectTarget);
+      syncFormTargets(root, redirectTarget);
       if (!detectSuccess(root)) return;
 
       trackRegistration();
     };
 
     trackSuccess();
+
+    const handleSubmit = (event) => {
+      const form = event.target;
+
+      if (!redirectTarget || !(form instanceof HTMLFormElement) || !root.contains(form)) {
+        return;
+      }
+
+      if (typeof form.checkValidity === 'function' && !form.checkValidity()) {
+        return;
+      }
+
+      syncRedirectFields(root, redirectTarget);
+      ensureSubmissionFrame();
+      form.target = SUBMIT_FRAME_NAME;
+
+      window.setTimeout(trackRegistration, 900);
+    };
+
+    root.addEventListener('submit', handleSubmit, true);
 
     const previousCallback = window._form_callback;
     const formCallback = (id) => {
@@ -112,6 +163,7 @@ export default function ActiveCampaignRegistrationTracker({
     });
 
     return () => {
+      root.removeEventListener('submit', handleSubmit, true);
       observer.disconnect();
 
       if (window._form_callback === formCallback) {
