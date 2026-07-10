@@ -293,8 +293,8 @@ const landingCourseUpdates = [
       image_url:
         'https://images.pexels.com/photos/6282022/pexels-photo-6282022.jpeg',
       price: 0,
-      landing_url: 'https://ebiacapacitacion.com/ia-desde-cero',
-      signup_url: 'https://ebiacapacitacion.com/ia-desde-cero',
+      landing_url: '/cursos/inteligencia-artificial-desde-cero',
+      signup_url: '/cursos/inteligencia-artificial-desde-cero',
       signup_event: 'none',
       is_active: true,
       featured: true,
